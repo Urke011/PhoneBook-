@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ToDo"
+             x:Class="ToDo.MainPage"
+             Title="ToDo">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Phonebook"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="StartAndExpand"/>
+            <ImageButton x:Name="AddButton"
+                    Source="add.png"
+                    HeightRequest="32"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    BorderColor="Transparent"
+                         Margin="0, 0, 12, 0"
+                    BackgroundColor="DarkSlateGray"
+                    Clicked="AddButton_Clicked"/>
+
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+
+
+    <ContentPage.Content>
+        <StackLayout x:Name="MyStackLayout">
+            <!--here goes ListView element to display ToDo items-->
+            <ListView x:Name="MyListView" ItemsSource="{Binding Data}" HasUnevenRows="True" SelectedItem="None"
+                      ItemTapped="MyListView_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="#eee"
+                             Padding="8"
+                             Orientation="Horizontal"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
+                                <BoxView Color="{Binding Completed, Converter={StaticResource boolToColor}}" WidthRequest="12" />
+                                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Label Text="{Binding Title}" FontSize="Medium" />
+                                    <Label Text="{Binding Content}" LineBreakMode="TailTruncation" TextColor="#f35e20" FontSize="Medium" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="FillAndExpand">
+                                    <Label Text="{Binding Date.Day}"
+                               FontSize="Large"
+                               LineBreakMode="NoWrap"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="End" />
+                                    <StackLayout Orientation="Vertical"
+                                     VerticalOptions="CenterAndExpand"
+                                     HorizontalOptions="StartAndExpand"
+                                     MinimumWidthRequest="220">
+                                        <Label Text="{Binding Date, StringFormat='{0:MMM}'}" LineBreakMode="NoWrap" />
+                                        <Label Text="{Binding Date.Year}" LineBreakMode="NoWrap" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

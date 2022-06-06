@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDo.ToDoPage">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="ToDo"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="StartAndExpand"/>
+            <ImageButton x:Name="DeleteButton"
+                    Source="delete.png"
+                    HorizontalOptions="End"
+                    BorderColor="Transparent"
+                    BackgroundColor="DarkSlateGray"
+                    HeightRequest="32"
+                    IsVisible="{Binding IsEditMode}"
+                    Margin="0, 0, 12, 0"
+                    Clicked="DeleteButton_Clicked"/>
+            <ImageButton x:Name="SaveButton"
+                    Source="save.png"
+                    HorizontalOptions="End"
+                    BorderColor="Transparent"
+                    BackgroundColor="DarkSlateGray"
+                    HeightRequest="28"    
+                    Margin="0, 0, 12, 0"
+                    Clicked="SaveButton_Clicked"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+
+
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="TitleEntry"
+               VerticalOptions="Center"
+               Placeholder="Your Name"
+               Text="{Binding Title}"/>
+            <Editor x:Name="DetailsEditor"
+                    Placeholder="Your Phone Number"
+                    VerticalOptions="FillAndExpand"
+                    Text="{Binding Content}"/>
+            <Button x:Name="MarkAsCompletedButton"
+                    Text="Mark as Completed"
+                    IsVisible="{Binding IsEditMode}"
+                    Clicked="MarkAsCompletedButton_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
